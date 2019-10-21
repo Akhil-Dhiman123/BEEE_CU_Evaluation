@@ -1,0 +1,39 @@
+int sensorPin=A0;
+int ledPin=12;
+int sensorValue=0;
+int switchPin=2;
+int Reading;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(12,OUTPUT);
+pinMode(2,INPUT);
+Reading=digitalRead(switchPin);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+sensorValue=analogRead(sensorPin);
+Serial.println(sensorValue);
+delay(100);
+if(sensorValue>300)
+{
+  digitalWrite(ledPin,LOW);
+}
+else
+{
+  if(Reading==HIGH)
+{
+  digitalWrite(ledPin,HIGH);
+  delay(500);
+  digitalWrite(ledPin,LOW);
+  delay(500);
+}
+else
+{
+ digitalWrite(ledPin,HIGH);
+  delay(1000);
+  digitalWrite(ledPin,LOW);
+  delay(1000);
+}
+}
